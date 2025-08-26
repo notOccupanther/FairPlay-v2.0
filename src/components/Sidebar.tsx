@@ -27,11 +27,19 @@ export default function Sidebar({ className }: SidebarProps) {
   const navigationItems = [
     { id: "home", label: "Home", icon: Home, href: "/" },
     { id: "charts", label: "Charts", icon: Trophy, href: "/charts" },
+    { id: "community", label: "Community", icon: Users, href: "/community" },
     { id: "search", label: "Search Artists", icon: Search, href: "/search" },
     { id: "top-artists", label: "Your Top Artists", icon: TrendingUp, href: "/charts" },
     { id: "favorites", label: "Favorites", icon: Heart, href: "/favorites" },
     { id: "artists", label: "Artists", icon: Users, href: "/artists" },
   ];
+
+  // Add artist dashboard if user is logged in
+  if (session?.user) {
+    navigationItems.push(
+      { id: "dashboard", label: "Artist Dashboard", icon: TrendingUp, href: "/artists/dashboard" }
+    );
+  }
 
   const bottomItems = [
     { id: "profile", label: "Profile", icon: User, href: "/profile" },

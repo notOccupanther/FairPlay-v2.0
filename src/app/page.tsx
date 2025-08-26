@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { motion } from "framer-motion";
 import { 
   Play, 
@@ -14,7 +14,8 @@ import {
   TrendingUp,
   Clock,
   Music2,
-  Trophy
+  Trophy,
+  Users
 } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import ArtistCard from "@/components/ArtistCard";
@@ -30,7 +31,7 @@ interface Artist {
 }
 
 export default function Home() {
-  const { data: session, status } = useSession();
+  const { data: session, status, update } = useSession();
   const [topArtists, setTopArtists] = useState<{
     weekly: Artist[];
     monthly: Artist[];
@@ -39,43 +40,120 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentVolume, setCurrentVolume] = useState(50);
   const [loading, setLoading] = useState(false);
+  const [spotifyError, setSpotifyError] = useState<string | null>(null);
+  const [sessionCheckCount, setSessionCheckCount] = useState(0);
+  const [lastSessionCheck, setLastSessionCheck] = useState(0);
 
+  // Prevent excessive session checks
   useEffect(() => {
-    if (session?.accessToken) {
-      fetchTopArtists();
+    const now = Date.now();
+    if (now - lastSessionCheck < 5000) { // Only check every 5 seconds
+      return;
     }
-  }, [session]);
+    
+    if (session?.accessToken && sessionCheckCount < 3) { // Limit to 3 checks
+      setLastSessionCheck(now);
+      setSessionCheckCount(prev => prev + 1);
+      
+      const checkSession = async () => {
+        try {
+          await update();
+        } catch (error) {
+          console.error('Session refresh failed:', error);
+        }
+      };
+      
+      checkSession();
+    }
+  }, [session?.accessToken, update, lastSessionCheck, sessionCheckCount]);
+
+  // Clean up #_=_ redirect issue that causes loops
+  useEffect(() => {
+    if (window.location.hash === '#_=_') {
+      // Remove the problematic hash
+      window.location.hash = '';
+      // Clean up the URL without causing a page reload
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, []);
+
+  // Debounced session check to prevent loops
+  useEffect(() => {
+    if (session?.accessToken && !topArtists) {
+      // Only fetch artists once when session is established and we don't have them
+      const timeoutId = setTimeout(() => {
+        fetchTopArtists();
+      }, 2000); // Wait 2 seconds to avoid rapid calls
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [session?.accessToken, topArtists]); // Only depend on accessToken and topArtists
 
   const fetchTopArtists = async () => {
     setLoading(true);
+    setSpotifyError(null);
+    
     try {
       const response = await fetch('/api/spotify/top-artists');
       if (response.ok) {
         const data = await response.json();
         setTopArtists(data);
+      } else {
+        const errorData = await response.json();
+        
+        // Handle specific error cases
+        if (errorData.code === "TOKEN_EXPIRED") {
+          // Token expired, user needs to re-authenticate
+          console.log("Spotify token expired, redirecting to re-authenticate");
+          setSpotifyError("Your Spotify session has expired. Please sign in again.");
+          // Force a new authentication flow
+          setTimeout(() => {
+            window.location.href = '/api/auth/signin/spotify';
+          }, 2000);
+          return;
+        }
+        
+        if (errorData.code === "INSUFFICIENT_PERMISSIONS") {
+          setSpotifyError("Spotify requires additional permissions. Please sign in again.");
+          setTimeout(() => {
+            window.location.href = '/api/auth/signin/spotify';
+          }, 2000);
+          return;
+        }
+        
+        // For other errors, show the message
+        console.error('Spotify API error:', errorData);
+        setSpotifyError(errorData.message || 'Unknown error occurred');
       }
     } catch (error) {
       console.error('Error fetching top artists:', error);
+      setSpotifyError('Network error while loading artists. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }
   };
 
   const handleConnectSpotify = () => {
-    // This will trigger the Spotify OAuth flow
-    window.location.href = '/api/auth/signin/spotify';
+    // Use NextAuth's signIn method instead of manual redirect
+    signIn("spotify");
   };
 
+  // Show loading state only when status is loading
   if (status === "loading") {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <Music2 className="w-16 h-16 text-green-400 mx-auto mb-4 animate-pulse" />
           <p className="text-white text-lg">Loading Fairplay...</p>
+          <p className="text-gray-400 text-sm mt-2">Authenticating...</p>
         </div>
       </div>
     );
   }
+
+  // Debug info
+  console.log('Session status:', status);
+  console.log('Session data:', session);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex">
@@ -198,6 +276,25 @@ export default function Home() {
                     See the most supported artists in real-time. No corporate influence, just pure fan support.
                   </p>
                 </div>
+
+                {/* Community Preview */}
+                <div className="mt-4 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                      <Users className="w-5 h-5 text-blue-400" />
+                      Community Activity
+                    </h3>
+                    <a
+                      href="/community"
+                      className="text-green-400 hover:text-green-300 text-sm font-medium"
+                    >
+                      Join Community →
+                    </a>
+                  </div>
+                  <p className="text-gray-400 text-sm">
+                    See real-time donations and connect with other music supporters. Build the future of fair music together.
+                  </p>
+                </div>
               </motion.div>
 
               {/* Top Artists Section */}
@@ -212,6 +309,27 @@ export default function Home() {
                     {loading ? "Refreshing..." : "Refresh"}
                   </button>
                 </div>
+
+                {/* Spotify Error Display */}
+                {spotifyError && (
+                  <div className="mb-6 p-4 bg-red-900 border border-red-700 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
+                        <span className="text-white text-xs">!</span>
+                      </div>
+                      <div>
+                        <p className="text-red-200 font-medium">Spotify Connection Issue</p>
+                        <p className="text-red-300 text-sm">{spotifyError}</p>
+                        <button
+                          onClick={() => window.location.href = '/api/auth/signin/spotify'}
+                          className="mt-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm transition-colors"
+                        >
+                          Reconnect with Spotify
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {loading ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

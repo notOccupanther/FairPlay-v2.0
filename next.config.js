@@ -10,6 +10,10 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+    serverComponentsExternalPackages: ['@next-auth/prisma-adapter'],
+  },
   async rewrites() {
     return [
       {

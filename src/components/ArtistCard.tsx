@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Heart, Play, DollarSign, TrendingUp } from "lucide-react";
+import Link from "next/link";
+import { Heart, Play, DollarSign, TrendingUp, ExternalLink } from "lucide-react";
 import { cn, formatCurrency, truncateText } from "@/lib/utils";
 
 interface Artist {
@@ -110,9 +111,11 @@ export default function ArtistCard({ artist, timeRange, className }: ArtistCardP
 
         {/* Artist Info */}
         <div className="space-y-2">
-          <h3 className="font-semibold text-white group-hover:text-green-400 transition-colors">
-            {truncateText(artist.name, 20)}
-          </h3>
+          <Link href={`/artists/${artist.id}`} className="block group">
+            <h3 className="font-semibold text-white group-hover:text-green-400 transition-colors">
+              {truncateText(artist.name, 20)}
+            </h3>
+          </Link>
           
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <TrendingUp className="w-4 h-4" />
@@ -147,13 +150,23 @@ export default function ArtistCard({ artist, timeRange, className }: ArtistCardP
               <Heart className={cn("w-5 h-5", isLiked && "fill-current")} />
             </button>
 
-            <button
-              onClick={() => setShowDonationModal(true)}
-              className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full text-sm font-medium transition-colors"
-            >
-              <DollarSign className="w-4 h-4" />
-              Support
-            </button>
+            <div className="flex gap-2">
+              <Link
+                href={`/artists/${artist.id}`}
+                className="p-2 text-gray-400 hover:text-white transition-colors"
+                title="View Profile"
+              >
+                <ExternalLink className="w-4 h-4" />
+              </Link>
+              
+              <button
+                onClick={() => setShowDonationModal(true)}
+                className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full text-sm font-medium transition-colors"
+              >
+                <DollarSign className="w-4 h-4" />
+                Support
+              </button>
+            </div>
           </div>
         </div>
       </div>
