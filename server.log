@@ -1,0 +1,253 @@
+
+> fairplay@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.32
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1307ms
+ ✓ Compiled /api/auth/[...nextauth] in 259ms (264 modules)
+ GET /api/auth/signin/spotify 200 in 533ms
+ ✓ Compiled /favicon.ico in 136ms (294 modules)
+ GET /favicon.ico 200 in 162ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1115ms (1507 modules)
+ HEAD / 200 in 1236ms
+ ✓ Compiled in 141ms (616 modules)
+ GET / 200 in 19ms
+ GET /favicon.ico 200 in 20ms
+ GET / 200 in 18ms
+ GET /api/auth/session 200 in 40ms
+ GET /favicon.ico 200 in 5ms
+ GET /api/auth/session 200 in 7ms
+ GET /api/auth/signin/spotify 200 in 6ms
+ GET /favicon.ico 200 in 10ms
+ POST /api/auth/signin/spotify 302 in 10ms
+ GET /api/auth/callback/spotify?code=AQDZ8vQMruMT765-u8enNPXADNq5oC4zLm_fFbXA5MAo2nGF9xB7zWGGTlixoEc8rEWh1WSpZqYvKg6ox4EZXQLx8iHz0-YZ_xXy-10DjeAaGCmq0wCsB1Tw3Bm-QrBl8139AMIhU1FzHK4b7u5tMavIJzZbkxJP8jn0CWGzGbRqv3SBx67ODHoVuNhOkwbbveUKvW24J7cmI1r6JhvCkNKY6_ce0wt0WG9cxtqIsM2RB4fTLXs9CiJ7ShsaOxdi29Olo7P01v_e-ab8DFiZTdFaAroitA-P7Xwby5plMBAC&state=XMtejtyFZjuHTA_Yj1lcpWOHe1gh6z2ptDQ57ad_1F0 302 in 289ms
+ GET / 200 in 15ms
+ GET /api/auth/session 200 in 9ms
+ GET /favicon.ico 200 in 14ms
+ GET /api/auth/session 200 in 8ms
+ ✓ Compiled /api/spotify/top-artists in 268ms (1076 modules)
+ GET /api/spotify/top-artists 200 in 684ms
+ GET /api/spotify/top-artists 200 in 277ms
+ ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
+  ▲ Next.js 14.2.32
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1216ms
+ ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
+  ▲ Next.js 14.2.32
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1158ms
+ ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
+  ▲ Next.js 14.2.32
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1125ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1078ms (1243 modules)
+ GET / 200 in 1245ms
+ ✓ Compiled in 147ms (616 modules)
+ ✓ Compiled /api/auth/[...nextauth] in 260ms (659 modules)
+ ✓ Compiled (891 modules)
+ GET /favicon.ico 200 in 541ms
+ GET /api/auth/session 200 in 727ms
+ GET /api/auth/session 200 in 13ms
+ ✓ Compiled /api/spotify/top-artists in 258ms (1076 modules)
+ GET /api/spotify/top-artists 200 in 592ms
+ GET /api/spotify/top-artists 200 in 241ms
+ ✓ Compiled /search in 270ms (1686 modules)
+ GET /search 200 in 345ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /favicon.ico 200 in 13ms
+ GET /api/auth/session 200 in 21ms
+ GET /api/auth/session 200 in 5ms
+ GET / 200 in 30ms
+ GET /favicon.ico 200 in 7ms
+ GET /api/spotify/top-artists 200 in 345ms
+ GET /api/spotify/top-artists 200 in 212ms
+ ✓ Compiled /top-artists in 355ms (1694 modules)
+ GET /top-artists 200 in 417ms
+ GET /favicon.ico 200 in 13ms
+ GET /api/auth/session 200 in 19ms
+ GET /api/auth/session 200 in 5ms
+ GET /api/spotify/top-artists 200 in 247ms
+ GET /api/spotify/top-artists 200 in 239ms
+ GET / 200 in 21ms
+ GET /favicon.ico 200 in 13ms
+ GET /api/spotify/top-artists 200 in 833ms
+ ✓ Compiled /artists in 228ms (1702 modules)
+ GET /artists 200 in 257ms
+ GET /api/auth/session 200 in 9ms
+ GET /favicon.ico 200 in 13ms
+ GET /api/auth/session 200 in 6ms
+ GET /api/spotify/top-artists 200 in 281ms
+ GET /api/spotify/top-artists 200 in 292ms
+ GET / 200 in 17ms
+ GET /favicon.ico 200 in 6ms
+ GET /api/spotify/top-artists 200 in 240ms
+(node:70221) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Failed to proxy http://localhost:3001/donate AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1714:7)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:130:17) {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:3001
+        at createConnectionError (node:net:1677:14)
+        at afterConnectMultiple (node:net:1707:16)
+        at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:130:17) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 3001
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:3001
+        at createConnectionError (node:net:1677:14)
+        at afterConnectMultiple (node:net:1707:16)
+        at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:130:17) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 3001
+    }
+  ]
+}
+AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1714:7)
+    at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:130:17) {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:3001
+        at createConnectionError (node:net:1677:14)
+        at afterConnectMultiple (node:net:1707:16)
+        at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:130:17) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 3001
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:3001
+        at createConnectionError (node:net:1677:14)
+        at afterConnectMultiple (node:net:1707:16)
+        at TCPConnectWrap.callbackTrampoline (node:internal/async_hooks:130:17) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 3001
+    }
+  ]
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 797ms (1935 modules)
+ ✓ Compiled in 1324ms (1498 modules)
+ ✓ Compiled in 362ms (1498 modules)
+ ✓ Compiled in 219ms (1498 modules)
+ ✓ Compiled in 266ms (1498 modules)
+ ✓ Compiled in 218ms (1498 modules)
+ ✓ Compiled in 224ms (1498 modules)
+ GET / 200 in 87ms
+ ✓ Compiled /favicon.ico in 323ms (915 modules)
+ ✓ Compiled (945 modules)
+ GET /favicon.ico 200 in 460ms
+ GET /api/auth/session 200 in 496ms
+ GET /api/auth/session 200 in 4ms
+ GET /api/auth/session 200 in 4ms
+ ✓ Compiled /api/spotify/top-artists in 272ms (1130 modules)
+ GET /api/spotify/top-artists 200 in 602ms
+ GET /api/spotify/top-artists 200 in 254ms
+ GET /api/spotify/top-artists 200 in 270ms
+ ✓ Compiled /api/donate-mock in 97ms (1132 modules)
+ POST /api/donate-mock 200 in 1116ms
+ GET /api/spotify/top-artists 200 in 297ms
+ ✓ Compiled in 608ms (1484 modules)
+ ✓ Compiled in 113ms (817 modules)
+ ✓ Compiled in 144ms (817 modules)
+ ✓ Compiled in 373ms (1484 modules)
+ ✓ Compiled in 104ms (817 modules)
+ ✓ Compiled in 401ms (1498 modules)
+ ✓ Compiled in 205ms (1500 modules)
+ ✓ Compiled /api/auth/[...nextauth] in 247ms (916 modules)
+ GET /api/auth/session 200 in 331ms
+ ✓ Compiled /api/spotify/top-artists in 265ms (1102 modules)
+ GET /api/spotify/top-artists 200 in 626ms
+ ✓ Compiled in 433ms (1920 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 249ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 90ms
+ ✓ Compiled /favicon.ico in 127ms (1131 modules)
+ GET /api/auth/session 200 in 263ms
+ GET /favicon.ico 200 in 275ms
+ GET /api/auth/session 200 in 58ms
+ GET /favicon.ico 200 in 14ms
+ GET /api/auth/session 200 in 13ms
+ GET /api/auth/session 200 in 12ms
+ ✓ Compiled in 229ms (1949 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 95ms
+ GET / 200 in 96ms
+ GET /favicon.ico 200 in 136ms
+ GET /favicon.ico 200 in 127ms
+ GET /api/auth/session 200 in 133ms
+ GET /api/auth/session 200 in 132ms
+ GET /api/auth/session 200 in 37ms
+ GET /api/auth/session 200 in 39ms
+ GET /api/spotify/top-artists 200 in 292ms
+ GET /api/spotify/top-artists 200 in 302ms
+ GET /api/spotify/top-artists 200 in 284ms
+ GET /api/spotify/top-artists 200 in 295ms
+ GET /api/auth/session 200 in 58ms
+ GET /api/spotify/top-artists 200 in 253ms
+ ✓ Compiled in 523ms (1920 modules)
+ GET /api/auth/session 200 in 43ms
+ GET /api/spotify/top-artists 200 in 278ms
+ ✓ Compiled /charts in 490ms (1502 modules)
+ GET /charts 200 in 572ms
+ ✓ Compiled /api/auth/[...nextauth] in 182ms (948 modules)
+ ✓ Compiled (978 modules)
+ GET /favicon.ico 200 in 334ms
+ GET /api/auth/session 200 in 342ms
+ GET /api/charts 200 in 353ms
+ GET /api/charts 200 in 6ms
+ GET /api/auth/session 200 in 7ms
+ ⨯ upstream image response failed for https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3133a15fbb0 404
+ ⨯ upstream image response failed for https://i.scdn.co/image/ab6761610000e5eb214f3cf1cbe7139c4e504b4bb 404
+ ⨯ upstream image response failed for https://i.scdn.co/image/ab6761610000e5eb7da39dea0a72f380d4fd8b7c9 404
+ ⨯ upstream image response failed for https://i.scdn.co/image/ab6761610000e5eb6be070445e02f8dbf9c466a88 404
+ ⨯ upstream image response failed for https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179afd9f 404
+ GET / 200 in 66ms
+ GET /favicon.ico 200 in 7ms
+ ✓ Compiled /api/spotify/top-artists in 113ms (1142 modules)
+ GET /api/spotify/top-artists 200 in 430ms
+ GET /api/auth/session 200 in 12ms
+ GET /api/spotify/top-artists 200 in 254ms
+ GET /charts 200 in 52ms
+ GET /api/charts 200 in 10ms
+ GET /api/auth/session 200 in 15ms
+ GET /api/charts 200 in 15ms
+ GET /api/auth/session 200 in 15ms
+ GET /favicon.ico 200 in 20ms
+ ⨯ upstream image response failed for https://i.scdn.co/image/ab6761610000e5eb7da39dea0a72f380d4fd8b7c9 404
+ ⨯ upstream image response failed for https://i.scdn.co/image/ab6761610000e5eb214f3cf1cbe7139c4e504b4bb 404
+ ⨯ upstream image response failed for https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3133a15fbb0 404
+ ⨯ upstream image response failed for https://i.scdn.co/image/ab6761610000e5eb6be070445e02f8dbf9c466a88 404
+ ⨯ upstream image response failed for https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179afd9f 404
+ GET /api/auth/session 200 in 14ms
